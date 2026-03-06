@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: demo-springboot-jvm
+
+clients:
+  weather:
+    base-url: https://api.open-meteo.com/v1
+
+logging:
+  level:
+    reactor.netty.http.client: DEBUG
+    reactor.netty.transport: DEBUG

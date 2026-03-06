@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- SEO -->
+    <title>GraalVM tech talk</title>
+    <meta name="description" content="Graal VM tech talk">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
+
+    <!-- CSS WebSlides -->
+    <link rel="stylesheet" type='text/css' media='all' href="static/css/webslides.css">
+
+    <!-- Optional - CSS SVG Icons (Font Awesome) -->
+    <link rel="stylesheet" type='text/css' media='all' href="static/css/svg-icons.css">
+
+    <!-- SOCIAL CARDS (ADD YOUR INFO) -->
+
+    <!-- FACEBOOK -->
+    <meta property="og:url" content="http://your-url.com/"> <!-- YOUR URL -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="WebSlides — Making HTML Presentations Easy"> <!-- EDIT -->
+    <meta property="og:description" content="WebSlides is about telling stories beautifully. Just the essential features. Good karma."> <!-- EDIT -->
+    <meta property="og:updated_time" content="2017-01-04T17:20:50"> <!-- EDIT -->
+    <meta property="og:image" content="static/images/share-webslides.jpg"> <!-- EDIT -->
+
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@webslides"> <!-- EDIT -->
+    <meta name="twitter:creator" content="@jlantunez"> <!-- EDIT -->
+    <meta name="twitter:title" content="WebSlides — Making HTML Presentations Easy"> <!-- EDIT -->
+    <meta name="twitter:description" content="WebSlides is about good karma. Just essential features. 120+ free slides ready to use."> <!-- EDIT -->
+    <meta name="twitter:image" content="static/images/share-webslides.jpg"> <!-- EDIT -->
+
+    <!-- FAVICONS -->
+    <link rel="shortcut icon" sizes="16x16" href="static/images/favicons/favicon.png">
+    <link rel="shortcut icon" sizes="32x32" href="static/images/favicons/favicon-32.png">
+    <link rel="apple-touch-icon icon" sizes="76x76" href="static/images/favicons/favicon-76.png">
+    <link rel="apple-touch-icon icon" sizes="120x120" href="static/images/favicons/favicon-120.png">
+    <link rel="apple-touch-icon icon" sizes="152x152" href="static/images/favicons/favicon-152.png">
+    <link rel="apple-touch-icon icon" sizes="180x180" href="static/images/favicons/favicon-180.png">
+    <link rel="apple-touch-icon icon" sizes="192x192" href="static/images/favicons/favicon-192.png">
+
+    <!-- Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#333333">
+
+</head>
+<body>
+
+<main role="main">
+    <article id="webslides" class="vertical">
+        <!-- Quick Guide
+          - Each parent <section> in the <article id="webslides"> element is an individual slide.
+          - Vertical sliding = <article id="webslides" class="vertical">
+          - <div class="wrap"> = container 90% / <div class="wrap size-50"> = 45%;
+        -->
+
+        <section>
+            <!--.wrap = container (width: 90%) -->
+            <div class="wrap aligncenter">
+                <h1><strong>Tech talk</strong></h1>
+                <h2>Native Java applications with GraalVM</h2>
+            </div>
+            <!-- .end .wrap -->
+        </section>
+
+        <section>
+            <span data-step-count=3></span>
+            <header>
+                <h1 class="aligncenter"><strong>What is GraalVM ?</strong></h1>
+            </header>
+            <ul>
+                <li class="animate-show" data-step=1>
+                    A modern JDK designed to run applications in a JVM or as <b>native application</b> (our focus in this presentation).
+                </li>
+                <li class="animate-show" data-step=2>
+                    It comes from the Graal project (originated at Oracle Labs).
+                </li>
+                <li class="animate-show" data-step=3>
+                    <div style="margin-bottom: 20px">Allows for a polyglot runtime: a JVM-based platform that can host more than just Java</div>
+                    <img class="aligncenter" width="800" src="static/images/architecture.png" alt="GraalVM architecture">
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <span data-step-count=4></span>
+            <header>
+                <h1 class="aligncenter"><strong>How does native compilation works ?</strong></h1>
+            </header>
+            <ul>
+                <li class="animate-show" data-step=1>
+                    AOT compilation: ahead-of-time compilation, where the application is compiled into native code before runtime.
+                </li>
+                <li class="animate-show" data-step=2>
+                    Static Analysis: It uses a "closed-world assumption," analyzing the application to find all reachable code paths from the main entry point.
+                </li>
+                <li class="animate-show" data-step=3>
+                    Heap Snapshotting: It executes static initializers at build time, capturing the resulting state into an "image heap" so the application starts with a pre-populated memory state.
+                </li>
+                <li class="animate-show" data-step=4>
+                    Substrate VM: Since the application no longer runs on a full JVM, GraalVM bundles a minimal runtime into the binary to handle memory management (GC) and thread scheduling.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <span data-step-count=3></span>
+            <header>
+                <h1 class="aligncenter"><strong>Native images key benefits</strong></h1>
+            </header>
+            <ul>
+                <li class="animate-show" data-step=1>
+                    <div style="margin-bottom: 20px">Improved security :</div>
+                    <ul>
+                        <li>Excludes unreachable code (closed-world assumption)</li>
+                        <li>GraalVM can embed a software bill of materials (SBOM) in your binary</li>
+                    </ul>
+                </li>
+                <li class="animate-show" data-step=2>
+                    Fast startup and low resource usage.
+                </li>
+                <li class="animate-show" data-step=3>
+                    Extends Java applications with other languages.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <header>
+                <h1 class="aligncenter"><strong>Comparison of runtime modes</strong></h1>
+            </header>
+            <table class="fl-table">
+                <thead>
+                    <th>Feature</th>
+                    <th>JVM (JIT) Mode</th>
+                    <th>Native Image (AOT) Mode</th>
+                </thead>
+                <tr>
+                    <td>Startup Time</td>
+                    <td>Slow (JVM warmup required)</td>
+                    <td>Almost instant (in milliseconds)</td>
+                </tr>
+                <tr>
+                    <td>Memory Footprint</td>
+                    <td>Large (requires full JVM)</td>
+                    <td>Small (minimal runtime)</td>
+                </tr>
+                <tr>
+                    <td>Performance</td>
+                    <td>Highest (dynamic optimizations)</td>
+                    <td>High</td>
+                </tr>
+                <tr>
+                    <td>Ideal for</td>
+                    <td>Long-running services</td>
+                    <td>Short-lived applications, CLI</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <header>
+                <h1 class="aligncenter"><strong>Comparison of runtime modes</strong></h1>
+            </header>
+            <div class="two-images-sides">
+                <img src="static/images/jvm-runtime-monitor.png" alt="JVM Runtime Monitor">
+                <img src="static/images/graalvm-runtime-monitor.png" alt="GraalVM Runtime Monitor">
+            </div>
+            <div class="two-images-sides">
+                <img src="static/images/jvm-startup.png" alt="JVM Startup time">
+                <img src="static/images/graalvm-startup.png" alt="GraalVM Startup time">
+            </div>
+        </section>
+
+        <section>
+            <span data-step-count=1></span>
+            <header>
+                <h1 class="aligncenter"><strong>More technical details</strong></h1>
+            </header>
+            <ul>
+                <li class="animate-show" data-step=1>
+                    Nice presentations on GraalVM :
+                </li>
+                <li class="animate-show" data-step=1>
+                    <div class="two-images-sides">
+                        <div class="wrap size-40 aligncenter">
+                            <div class="embed">
+                                <iframe
+                                        src="https://www.youtube.com/embed/oMxztQBHp_A"
+                                        title="YouTube video player"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            GraalVM presentation starts at 27:12
+                        </div>
+                        <div class="wrap size-40 aligncenter">
+                            <div class="embed">
+                                <iframe
+                                        src="https://www.youtube.com/embed/ANN9rxYo5Hg"
+                                        title="YouTube video player"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin"
+                                        allowfullscreen>
+                                </iframe>
+                            </div>
+                            Very long and detailed
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <header>
+                <h1 class="aligncenter"><strong>Demo time !</strong></h1>
+            </header>
+            <div class="two-images-sides">
+                <img width="600px" src="static/images/demoMeme1.jpg" alt="Demo meme 1">
+                <img src="static/images/demoMeme2.jpg" alt="Demo meme 2">
+            </div>
+        </section>
+    </article>
+    <!-- end article -->
+</main>
+<!-- end main -->
+
+<!-- A global footer
+
+  <footer role="contentinfo">
+   <div class="wrap">
+     <p>An <a href="https://github.com/webslides/webslides">open source solution</a>, by <a href="https://twitter.com/webslides">@webslides</a>.</p>
+   </div>
+ </footer>  -->
+
+<!-- Required -->
+<script src="static/js/webslides.js"></script>
+<script src="static/js/webslides-animation.js"></script>
+<script>
+    window.ws = new WebSlides();
+    new WebSlidesAnimation(window.ws);
+</script>
+
+<!-- OPTIONAL - svg-icons.js (fontastic.me - Font Awesome as svg icons) -->
+<script defer src="static/js/svg-icons.js"></script>
+
+</body>
+</html>
